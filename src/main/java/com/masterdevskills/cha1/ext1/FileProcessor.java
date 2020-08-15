@@ -22,8 +22,10 @@
 
 package com.masterdevskills.cha1.ext1;
 
+import java.io.*;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * TODO : Write a file processor that would read text from a text file.
@@ -45,6 +47,12 @@ public class FileProcessor {
      * @see List#removeIf(Predicate)
      */
     public List<String> readFileFrom(String fileName) {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+            return bufferedReader.lines().filter(s -> !s.isEmpty()).collect(Collectors.toList());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         throw new RuntimeException("Not Yet Implemented");
     }
@@ -60,6 +68,18 @@ public class FileProcessor {
      */
     public void writeToFile(List<String> lines, String fileName) {
 
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
+            lines.forEach(s -> {
+                try {
+                    bufferedWriter.write(s);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         throw new RuntimeException("Not Yet Implemented");
     }
 }

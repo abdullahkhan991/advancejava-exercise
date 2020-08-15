@@ -37,11 +37,12 @@ public class LambdaExpression2 {
 	 */
 	public void executionTime() {
 		//TODO add your code here;
+		Executable executable = () -> System.out.println();
 	}
 
 	/* TODO: use the above of method here
 	 */
 	public void run() {
-		//executionTime();
+		executionTime();
 	}
 }
